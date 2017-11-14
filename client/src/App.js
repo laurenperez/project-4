@@ -15,7 +15,8 @@ class App extends Component {
     super(props)
     this.state = {
       token: '',
-      user: {}
+      user: {},
+      activity: ''
     }
   }
 
@@ -32,6 +33,14 @@ class App extends Component {
       user: {}
     })
   }
+
+  setActivity = (action) => {
+    this.setState({
+      activity: action
+    })
+  }
+
+
 
   componentDidMount = () => {
     // If there is a token in localStorage
@@ -64,12 +73,16 @@ class App extends Component {
   render() {
     let authorizedRoutes = '';
     var theUser = this.state.user
-    if (typeof this.state.user === 'object' && Object.keys(this.state.user).length !== 0) {
+    if (typeof this.state.user === 'object' && Object.keys(this.state.user).length !== null) {
       authorizedRoutes =
       <div>
+        <nav>
+          <Link to="/">Home</Link>{' '}
+          <Link to="/user-profile">My Dashboard</Link>{' '}
+        </nav>
         <Route exact path="/" render={() => <Main user={this.state.user} lift={this.liftTokenToState}/>} />
-        <Route path="/user-profile" render={() => <UserProfile user={this.state.user} logout={this.logout}/>} />
-        <Route path="/activity" render={() => <Activity user={this.state.user} logout={this.logout}/>} />
+        <Route exact path="/user-profile" render={() => <UserProfile user={this.state.user} logout={this.logout} setActivity={this.setActivity}/>} />
+        <Route exact path="/activity" render={() => <Activity user={this.state.user} logout={this.logout} activity={this.state.activity}/>} />
       </div>
     } else {
       authorizedRoutes =
@@ -80,13 +93,7 @@ class App extends Component {
     return (
       <div>
         <Router>
-          <div>
-            <nav>
-              <Link to="/">Home</Link>{' '}
-              <Link to="/user-profile">My Dashboard</Link>{' '}
-            </nav>
-            {authorizedRoutes}
-          </div>
+          {authorizedRoutes}
         </Router>
       </div>
     );

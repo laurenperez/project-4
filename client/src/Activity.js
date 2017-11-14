@@ -6,25 +6,22 @@ class Activity extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      user: {}
+      user: {},
+      activity: this.props.activity
     };
   }
 
   // componentDidMount(){
-    //API call goes here
-  //   let seattleParks = "http://api.openweathermap.org/data/2.5/weather?zip=98102,us&appid=052f26926ae9784c2d677ca7bc5dec98&units=imperial"
-  //   let category
+  //   //API call goes here
+  //   let activity = "";
+  //   let seattleParks = "https://data.seattle.gov/resource/ye65-jqxk.json?feature_desc=" + activity
+  //
   //   axios(weatherData)
-  //   .then(response => response.json())
-  //   .then(response => this.setState({
+  //     .then(response => response.json())
+  //     .then(response => this.setState({
   //     city: response.name,
-  //     weatherCondition: response.weather[0].main,
-  //     temp: response.main.temp,
-  //     wind: response.wind.speed,
   //     lat: response.coord.lat,
   //     lon: response.coord.lon,
-  //     humidity: response.main.humidity,
-  //     pressure: response.main.pressure,
   //     high: response.main.temp_max,
   //     low: response.main.temp_min,
   //   }))
@@ -37,6 +34,7 @@ class Activity extends Component {
         <p>Hello, {this.props.user.name}!</p>
         <a onClick={this.props.logout}>Logout</a>
         <h1>This is an activity!</h1>
+        <h2>{this.state.activity}</h2>
       </div>
     );
   }
