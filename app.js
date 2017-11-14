@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 
 // Mongoose stuff
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/mern-local-auth');
+mongoose.connect('mongodb://localhost/project-4');
 
 var index = require('./routes/index');
 var users = require('./routes/users');

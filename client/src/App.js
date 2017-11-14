@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Link, Redirect
+  } from 'react-router-dom';
 import './App.css';
 import Signup from './Signup';
 import Login from './Login';
 import Logout from './Logout';
+import Main from './Main';
+import Activity from './Activity';
 import UserProfile from './UserProfile';
 import axios from 'axios';
 
@@ -18,21 +17,23 @@ class App extends Component {
       token: '',
       user: {}
     }
-    this.liftTokenToState = this.liftTokenToState.bind(this)
-    this.logout = this.logout.bind(this)
-    this.componentDidMount = this.componentDidMount.bind(this)
   }
 
-  liftTokenToState(data) {
-    this.setState({token: data.token, user: data.user})
+  liftTokenToState = (data) => {
+    this.setState({
+      token: data.token,
+      user: data.user})
   }
 
-  logout() {
+  logout = () => {
     localStorage.removeItem('mernToken')
-    this.setState({token: '', user: {}})
+    this.setState({
+      token: '',
+      user: {}
+    })
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     // If there is a token in localStorage
     var token = localStorage.getItem('mernToken')
     if (token === 'undefined' || token === null || token === '' || token === undefined) {
@@ -61,29 +62,39 @@ class App extends Component {
   }
 
   render() {
+    let authorizedRoutes = '';
     var theUser = this.state.user
     if (typeof this.state.user === 'object' && Object.keys(this.state.user).length !== 0) {
-      return (
-        <div className='App'>
-          <UserProfile user={this.state.user} logout={this.logout} />
-        </div>
-      );
+      authorizedRoutes =
+      <div>
+        <Route exact path="/" render={() => <Main user={this.state.user} lift={this.liftTokenToState}/>} />
+        <Route path="/user-profile" render={() => <UserProfile user={this.state.user} logout={this.logout}/>} />
+        <Route path="/activity" render={() => <Activity user={this.state.user} logout={this.logout}/>} />
+      </div>
     } else {
-      return (
-        <div className='App'>
-
-          <div className='SignupBox'>
-            <Signup lift={this.liftTokenToState} />
-          </div>
-
-          <div className='LoginBox'>
-            <Login lift={this.liftTokenToState} />
-          </div>
-
-        </div>
-      );
+      authorizedRoutes =
+      <div>
+        <Route exact path="/" render={() => <Main user={this.state.user} lift={this.liftTokenToState}/>} /> //not logged in
+      </div>
     }
+    return (
+      <div>
+        <Router>
+          <div>
+            <nav>
+              <Link to="/">Home</Link>{' '}
+              <Link to="/user-profile">My Dashboard</Link>{' '}
+            </nav>
+            {authorizedRoutes}
+          </div>
+        </Router>
+      </div>
+    );
   }
 }
 
 export default App;
+
+//  <Route path="/user-profile" render={Restricted} /> // Make a Restricted page that redirects
+//   <Route path="*" render={NotFound} status={404} />
+// <Route path="*" render={NotFound} status={404} /> //make a NOTFOUND PAGE
