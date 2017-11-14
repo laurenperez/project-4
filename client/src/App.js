@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch, Link, Redirect
+import { BrowserRouter as Router, Route, Link,
   } from 'react-router-dom';
 import './App.css';
-import Signup from './Signup';
-import Login from './Login';
-import Logout from './Logout';
 import Main from './Main';
 import Activity from './Activity';
 import UserProfile from './UserProfile';
+import MapAll from './MapAll';
 import axios from 'axios';
 
 class App extends Component {
@@ -34,12 +32,11 @@ class App extends Component {
     })
   }
 
-  setActivity = (action) => {
+  setActivity = (activity) => {
     this.setState({
-      activity: action
+      activity: activity
     })
   }
-
 
 
   componentDidMount = () => {
@@ -52,23 +49,24 @@ class App extends Component {
         user: {}
       })
     } else {
-      //   Validate the token against the server
+      // Validate the token against the server
       axios.post('/auth/me/from/token', {
         token: token
       }).then(response => {
-        //   Store the token and user
+        // Store the token and user
         localStorage.setItem('mernToken', response.data.token)
         this.setState({
           token: response.data.token,
           user: response.data.user
         })
-        //   Pass User into child components and display main app
+        // Pass User into child components and display main app
       }).catch(err => {
         // Both the JWT and db errors will be caught here
         console.log(err)
       })
     }
   }
+
 
   render() {
     let authorizedRoutes = '';
@@ -79,10 +77,12 @@ class App extends Component {
         <nav>
           <Link to="/">Home</Link>{' '}
           <Link to="/user-profile">My Dashboard</Link>{' '}
+          <Link to="/map">Map</Link>{' '}
         </nav>
         <Route exact path="/" render={() => <Main user={this.state.user} lift={this.liftTokenToState}/>} />
         <Route exact path="/user-profile" render={() => <UserProfile user={this.state.user} logout={this.logout} setActivity={this.setActivity}/>} />
         <Route exact path="/activity" render={() => <Activity user={this.state.user} logout={this.logout} activity={this.state.activity}/>} />
+        <Route exact path="/map" render={() => <MapAll user={this.state.user} lift={this.liftTokenToState}/>} />
       </div>
     } else {
       authorizedRoutes =
@@ -101,7 +101,3 @@ class App extends Component {
 }
 
 export default App;
-
-//  <Route path="/user-profile" render={Restricted} /> // Make a Restricted page that redirects
-//   <Route path="*" render={NotFound} status={404} />
-// <Route path="*" render={NotFound} status={404} /> //make a NOTFOUND PAGE
