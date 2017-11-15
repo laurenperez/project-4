@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Logout from './Logout';
+import MapAll from './MapAll';
 import axios from 'axios';
 
 class Activity extends Component {
@@ -9,13 +10,11 @@ class Activity extends Component {
       user: {},
       activity: this.props.activity,
       parks: [],
-      locations: []
     };
   }
 
   componentDidMount(){
-    //API call goes here
-    console.log(this.state.activity)
+    //API call to get parks
     let temp = this.state.activity;
     let activity = temp.replace(" ", "%20")
     let seattleParks = "https://data.seattle.gov/resource/ye65-jqxk.json?feature_desc=" + activity;
@@ -35,10 +34,11 @@ class Activity extends Component {
           <h3>{item.hours}</h3>
         </div>
       ))
-      //get locations 
+      //get locations
 
     return (
       <div>
+        <MapAll user={this.state.user} lift={this.liftTokenToState} parks={this.state.parks}/>
         <p>Hello, {this.props.user.name}!</p>
         <a onClick={this.props.logout}>Logout</a>
         <h1>Here are all the places you can do this Activity!</h1>

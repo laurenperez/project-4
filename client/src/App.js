@@ -83,7 +83,7 @@ class App extends Component {
         <Route exact path="/" render={() => <Main user={this.state.user} lift={this.liftTokenToState}/>} />
         <Route exact path="/user-profile" render={() => <UserProfile user={this.state.user} logout={this.logout} setActivity={this.setActivity}/>} />
         <Route exact path="/activity" render={() => <Activity user={this.state.user} logout={this.logout} activity={this.state.activity}/>} />
-        <Route exact path="/map" render={() => <MapAll user={this.state.user} lift={this.liftTokenToState} google={window.google}/>} />
+        <Route exact path="/map" render={() => <MapAll user={this.state.user} lift={this.liftTokenToState}/>} />
       </div>
     } else {
       authorizedRoutes =

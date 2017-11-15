@@ -3,7 +3,27 @@ import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 
 
 export class MapContainer extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      user: {},
+      activity: this.props.activity,
+      parks: this.props.parks
+    };
+  }
   render() {
+
+    console.log(this.props.parks)
+
+    var parkLocations = this.props.parks.map((item, index) => (
+      <Marker
+        title={`${item.name}`}
+        name={`${item.name}`}
+        position={{lat: item.location.coordinates[1], lng: item.location.coordinates[0]}}
+      />
+    ));
+
+
     const style = {
     width: 400,
     height: 400
@@ -21,16 +41,8 @@ export class MapContainer extends Component {
         onClick={this.onMapClicked}
       >
 
-      <Marker
-        title={'Name of Park'}
-        name={'SOMA'}
-        position={{lat: 47.608013, lng: -122.335167}}
-      />
-      <Marker
-        title={'Name of Park'}
-        name={'Dolores park'}
-        position={{lat: 47.680304, lng: -122.255084}}
-      />
+      {parkLocations}
+
 
 
       </Map>
@@ -45,8 +57,9 @@ export default GoogleApiWrapper({
 })(MapContainer);
 
 
-
-
+// icon={{
+//   url: iconUrl
+// }}
 
 // google maps API key : AIzaSyDIq_UgKoQ5Du5X_f_S7nCE4mcH2qLqhdw
 //
@@ -58,3 +71,18 @@ export default GoogleApiWrapper({
 //       <h1>{this.state.selectedPlace.name}</h1>
 //     </div>
 // </InfoWindow>
+
+//
+//
+<Marker
+  title={'Name of Park'}
+  name={'SOMA'}
+  position={{lat: 47.608013, lng: -122.335167}}
+/>
+//
+// <Marker
+//   title={'Name of Park'}
+//   name={'Dolores park'}
+//   position={{lat: 47.680304, lng: -122.255084}}
+//
+// />
