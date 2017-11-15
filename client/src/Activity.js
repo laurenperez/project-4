@@ -32,13 +32,16 @@ class Activity extends Component {
   }
 
   render() {
-      let parkList = this.state.parks.map((item, index) => (
-        <div>
-          <h3>{item.name}</h3>
-          <h3>{item.hours}</h3>
-        </div>
-      ))
-      //get locations
+    let parkList = this.state.parks.map(function(item, index){
+      if (item.hours.indexOf('<') < 0){
+        return (
+          <div>
+            <h3>{item.name}</h3>
+            <h3>{item.hours}</h3>
+          </div>
+        )
+      }
+    });
 
     return (
       <div>
