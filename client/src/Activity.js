@@ -15,8 +15,12 @@ class Activity extends Component {
 
   componentDidMount(){
     //API call to get parks
-    let temp = this.state.activity;
-    let activity = temp.replace(" ", "%20")
+    var activity = this.state.activity;
+    if (activity.indexOf(' ') >= 0){
+      let temp = this.state.activity;
+      activity = temp.replace(" ", "%20");
+    };
+
     let seattleParks = "https://data.seattle.gov/resource/ye65-jqxk.json?feature_desc=" + activity;
     axios.get(seattleParks)
       .then(response => {

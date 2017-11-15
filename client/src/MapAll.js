@@ -15,13 +15,17 @@ export class MapContainer extends Component {
 
     console.log(this.props.parks)
 
-    var parkLocations = this.props.parks.map((item, index) => (
-      <Marker
-        title={`${item.name}`}
-        name={`${item.name}`}
-        position={{lat: item.location.coordinates[1], lng: item.location.coordinates[0]}}
-      />
-    ));
+    var parkLocations = this.props.parks.map(function(item, index){
+      if (item.location !== undefined){
+        return (
+        <Marker
+          title={`${item.name}`}
+          name={`${item.name}`}
+          position={{lat: item.location.coordinates[1], lng: item.location.coordinates[0]}}
+        />
+        )
+      }
+    });
 
 
     const style = {

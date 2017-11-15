@@ -33,8 +33,8 @@ class UserProfile extends Component {
         <hr/>
         <button value="Dog Off Leash Area" onClick={(e) => this.handleClickActivity(e)}>Dogs: Off Leash Area</button>
         <button value="Hiking Trails" onClick={(e) => this.handleClickActivity(e)}>Hiking Trails</button>
-        <button value="Paths" onClick={(e) => this.handleClickActivity(e)}>Walking Paths</button>
-        <button value="View" onClick={(e) => this.handleClickActivity(e)}>Sceneic Views</button>
+        <button value="Paths" onClick={(e) => this.handleClickActivity(e)}>Paths</button>
+        <button value="View" onClick={(e) => this.handleClickActivity(e)}>View</button>
         <button value="Woods" onClick={(e) => this.handleClickActivity(e)}>Woods</button>
       </div>
     );
