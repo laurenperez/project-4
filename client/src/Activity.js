@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Link, Redirect
+  } from 'react-router-dom';
 import Logout from './Logout';
 import MapAll from './MapAll';
 import axios from 'axios';
+import WeatherWidget from './WeatherWidget';
+
+
+
 
 class Activity extends Component {
   constructor(props) {
@@ -10,6 +16,7 @@ class Activity extends Component {
       user: {},
       activity: this.props.activity,
       parks: [],
+      redirect: false
     };
   }
 
@@ -31,31 +38,49 @@ class Activity extends Component {
     .catch(error => console.log(error))
   }
 
+  handleClickActivity = (e, name) => {
+    console.log("in handle click");
+    console.log(name);
+    e.preventDefault();
+    this.props.setPark(name);
+    this.setState({
+      redirect: true
+    })
+  }
+  jenna = () =>{
+    console.log("fuck react this works")
+  }
+
   render() {
-    let parkList = this.state.parks.map(function(item, index){
+    let parkList = this.state.parks.map((item, index) => {
       if (item.hours.indexOf('<') < 0){
         return (
           <div>
-            <h3>{item.name}</h3>
+            <button onClick={(e) => this.handleClickActivity(e, item.pmaid)}>{item.name}</button>
             <h3>{item.hours}</h3>
           </div>
         )
       }
     });
+    const{redirect} = this.state;
+      if(redirect){
+        return <Redirect to ='/park'/>
+      }
 
     return (
       <div>
-        <MapAll user={this.state.user} lift={this.liftTokenToState} parks={this.state.parks}/>
-        <p>Hello, {this.props.user.name}!</p>
-        <a onClick={this.props.logout}>Logout</a>
-        <h1>Here are all the places you can do this Activity!</h1>
-        {parkList}
+          <h1>This is the main Feature/Activity Page</h1>
+          <h3>Hello, {this.props.user.name}!</h3>
+          <a onClick={this.props.logout}>Logout</a>
+          <WeatherWidget />
+          <hr/>
+          <button onClick={this.jenna}> fuck react </button>
+          <h1>All of these parks have:  {this.state.activity}</h1>
+          {parkList}
+          <MapAll user={this.state.user} lift={this.liftTokenToState} parks={this.state.parks}/>
       </div>
     );
   }
 }
 
 export default Activity;
-
-
-// if(hours.charAt(1) !== "<"){

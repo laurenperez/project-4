@@ -8,14 +8,14 @@ export class MapContainer extends Component {
     this.state = {
       user: {},
       activity: this.props.activity,
-      parks: this.props.parks
+      parks: this.props.parks,
     };
   }
+
+
   render() {
-
     console.log(this.props.parks)
-
-    var parkLocations = this.props.parks.map(function(item, index){
+    var parkLocations = this.props.parks.map((item, index) => {
       if (item.location !== undefined){
         return (
         <Marker
@@ -30,27 +30,22 @@ export class MapContainer extends Component {
 
     const style = {
     width: 400,
-    height: 400
+    height: 400,
     }
     return (
       <div ref="map" style={{width: 400, height: 400, border: '1px solid black'}}>
-      <Map
-        google={this.props.google}
-        style={style}
-        initialCenter={{
-          lat: 47.608013,
-          lng: -122.335167
-        }}
-        zoom={11}
-        onClick={this.onMapClicked}
-      >
+        <Map
+          google={this.props.google}
+          style={style}
+          initialCenter={{
+            lat: 47.608013,
+            lng: -122.335167
+          }}
+          zoom={11}
+        >
 
-      {parkLocations}
-
-
-
-      </Map>
-
+        {parkLocations}
+        </Map>
       </div>
     );
   }
@@ -61,32 +56,17 @@ export default GoogleApiWrapper({
 })(MapContainer);
 
 
-// icon={{
-//   url: iconUrl
-// }}
+
 
 // google maps API key : AIzaSyDIq_UgKoQ5Du5X_f_S7nCE4mcH2qLqhdw
 //
 // <Marker onClick={this.onMarkerClick}
 //         name={'Current location'} />
 //
-// <InfoWindow onClose={this.onInfoWindowClose}>
+// <InfoWindow
+//   marker={this.state.activeMarker}
+//   visible={this.state.showingInfoWindow}>
 //     <div>
-//       <h1>{this.state.selectedPlace.name}</h1>
+//       <h1>Hey!</h1>
 //     </div>
 // </InfoWindow>
-
-//
-//
-<Marker
-  title={'Name of Park'}
-  name={'SOMA'}
-  position={{lat: 47.608013, lng: -122.335167}}
-/>
-//
-// <Marker
-//   title={'Name of Park'}
-//   name={'Dolores park'}
-//   position={{lat: 47.680304, lng: -122.255084}}
-//
-// />

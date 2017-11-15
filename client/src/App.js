@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link,
   } from 'react-router-dom';
-import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import './App.css';
 import Main from './Main';
 import Activity from './Activity';
 import UserProfile from './UserProfile';
 import MapAll from './MapAll';
 import axios from 'axios';
+import Park from './Park';
+
+
+
 
 class App extends Component {
   constructor(props) {
@@ -15,7 +18,8 @@ class App extends Component {
     this.state = {
       token: '',
       user: {},
-      activity: ''
+      activity: '',
+      park: ''
     }
   }
 
@@ -36,6 +40,12 @@ class App extends Component {
   setActivity = (activity) => {
     this.setState({
       activity: activity
+    })
+  }
+
+  setPark = (pmaid) => {
+    this.setState({
+      park: pmaid
     })
   }
 
@@ -78,12 +88,12 @@ class App extends Component {
         <nav>
           <Link to="/">Home</Link>{' '}
           <Link to="/user-profile">My Dashboard</Link>{' '}
-          <Link to="/map">Map</Link>{' '}
         </nav>
         <Route exact path="/" render={() => <Main user={this.state.user} lift={this.liftTokenToState}/>} />
         <Route exact path="/user-profile" render={() => <UserProfile user={this.state.user} logout={this.logout} setActivity={this.setActivity}/>} />
-        <Route exact path="/activity" render={() => <Activity user={this.state.user} logout={this.logout} activity={this.state.activity}/>} />
+        <Route exact path="/activity" render={() => <Activity user={this.state.user} logout={this.logout} activity={this.state.activity} setPark={this.setPark}/>} />
         <Route exact path="/map" render={() => <MapAll user={this.state.user} lift={this.liftTokenToState}/>} />
+        <Route exact path="/park" render={() => <Park user={this.state.user} lift={this.liftTokenToState} activity={this.state.activity} park={this.state.park}/>} />
       </div>
     } else {
       authorizedRoutes =

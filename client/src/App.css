@@ -16,3 +16,8 @@
   background: lightred;
   padding: 0.5em;
 }
+
+
+.weather-widget {
+  background: yellow;
+}
