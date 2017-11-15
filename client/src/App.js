@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link,
   } from 'react-router-dom';
+import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import './App.css';
 import Main from './Main';
 import Activity from './Activity';
@@ -82,7 +83,7 @@ class App extends Component {
         <Route exact path="/" render={() => <Main user={this.state.user} lift={this.liftTokenToState}/>} />
         <Route exact path="/user-profile" render={() => <UserProfile user={this.state.user} logout={this.logout} setActivity={this.setActivity}/>} />
         <Route exact path="/activity" render={() => <Activity user={this.state.user} logout={this.logout} activity={this.state.activity}/>} />
-        <Route exact path="/map" render={() => <MapAll user={this.state.user} lift={this.liftTokenToState}/>} />
+        <Route exact path="/map" render={() => <MapAll user={this.state.user} lift={this.liftTokenToState} google={window.google}/>} />
       </div>
     } else {
       authorizedRoutes =
