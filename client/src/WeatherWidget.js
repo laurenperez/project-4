@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import { Grid, Row, Col } from 'react-flexbox-grid';
 import rain from './img/rain.jpg'
+import Paper from 'material-ui/Paper';
+import './App.css';
+
 
 class WeatherWidget extends Component {
   constructor(props){
@@ -37,38 +40,34 @@ class WeatherWidget extends Component {
 
 
   render() {
+
     const style = {
-      height: 500,
+      height: 600,
       width: 400,
       textAlign: 'center',
-      backgroundColor:'white'
+      backgroundColor: 'black',
+      color: 'white'
     };
 
     return (
-      <div className="weather-widget">
-        <Card style={style}>
-          <CardHeader>
-            <h3>Current Weather for {this.state.city} </h3>
-          </CardHeader>
-          <CardMedia
-            overlay={
-              <div>
-                <h1>Current Weather for {this.state.city} </h1>
+
+      <Grid fluid>
+        <Row>
+          <Col xs={12} md={12}>
+            <div className="weather-widget">
+              <Paper style={style} zDepth={2} rounded={false}>
+                <h1>Current Weather {this.state.city} </h1>
                 <h1>{this.state.temp} F</h1>
-              </div>
-            }
-            >
-            <img className="weather-photo" src={rain} alt="Weather-Image" />
-          </CardMedia>
-          <CardTitle title="Current Conditions" subtitle="Be prapared before you play" />
-          <CardText>
-            <h3>High of {this.state.high} and a Low of {this.state.low}</h3>
-            <h1>{this.state.weatherCondition}</h1>
-            <h3>Wind speeds {this.state.wind} mph.</h3>
-            <h3>Humidity {this.state.humidity}%</h3>
-          </CardText>
-        </Card>
-      </div>
+                <img className="weather-photo" src={rain} alt="Weather-Image" />
+                <h3>High of {this.state.high} and a Low of {this.state.low}</h3>
+                <h1>{this.state.weatherCondition}</h1>
+                <h3>Wind speeds {this.state.wind} mph.</h3>
+                <h3>Humidity {this.state.humidity}%</h3>
+              </Paper>
+            </div>
+          </Col>
+        </Row>
+      </Grid>
     );
   }
 }

@@ -5,6 +5,8 @@ import Logout from './Logout';
 import MapAll from './MapAll';
 import axios from 'axios';
 import WeatherWidget from './WeatherWidget';
+import { Grid, Row, Col } from 'react-flexbox-grid';
+import Paper from 'material-ui/Paper';
 
 
 class Activity extends Component {
@@ -49,16 +51,27 @@ class Activity extends Component {
       if (item.hours.indexOf('<') < 0){
         return (
           <div>
-            <button onClick={(e) => this.handleClickActivity(e, item.pmaid)}>{item.name}</button>
-            <h3>{item.hours}</h3>
+            <Paper style={style} zDepth={2}>
+              <button onClick={(e) => this.handleClickActivity(e, item.pmaid)}>{item.name}</button>
+              <h3>{item.hours}</h3>
+            </Paper>
           </div>
         )
       }
     });
+
     const{redirect} = this.state;
       if(redirect){
         return <Redirect to ='/park'/>
       }
+
+      const style = {
+        height: 100,
+        width: 100,
+        margin: 20,
+        textAlign: 'center',
+        display: 'inline-block',
+      };
 
     return (
       <div>

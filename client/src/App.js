@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link,
   } from 'react-router-dom';
+import { Grid, Row, Col } from 'react-flexbox-grid';
 import './App.css';
 import Main from './Main';
 import Activity from './Activity';
@@ -8,6 +9,7 @@ import UserProfile from './UserProfile';
 import MapAll from './MapAll';
 import axios from 'axios';
 import Park from './Park';
+
 
 
 class App extends Component {
@@ -85,7 +87,7 @@ class App extends Component {
     if (typeof this.state.user === 'object' && Object.keys(this.state.user).length !== null) {
       authorizedRoutes =
       <div>
-        <nav>
+        <nav className="top-nav">
           <Link to="/">Home</Link>{' '}
           <Link to="/user-profile">My Dashboard</Link>{' '}
         </nav>

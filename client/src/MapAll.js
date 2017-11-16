@@ -29,11 +29,11 @@ export class MapContainer extends Component {
 
 
     const style = {
-    width: 400,
-    height: 400,
+    width: 600,
+    height: 800,
     }
     return (
-      <div ref="map" style={{width: 400, height: 400, border: '1px solid black'}}>
+      <div ref="map" style={{width: 600, height: 800}}>
         <Map
           google={this.props.google}
           style={style}
@@ -54,7 +54,6 @@ export class MapContainer extends Component {
 export default GoogleApiWrapper({
   apiKey: "AIzaSyDIq_UgKoQ5Du5X_f_S7nCE4mcH2qLqhdw"
 })(MapContainer);
-
 
 
 

@@ -1,6 +1,22 @@
-body{
-  margin: 10px;
-  background-color: yellow;
+body {
+  margin: 0px;
+  background-image: url(./img/homepage.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  font-family: 'Raleway', sans-serif;
+  font-size: 18px;
+}
+
+h1, h2, h3 {
+  font-family: 'Raleway', sans-serif;
+}
+
+/*font-family: 'Rock Salt', cursive;*/
+
+a {
+  color: white;
+  text-decoration: none;
 }
 
 .App {
@@ -22,20 +38,28 @@ body{
   padding: 0.5em;
 }
 
-.paper-bubbles{
+.top-nav {
+  background-color: rgba(0, 0, 0, 0.8);
+  font-size: 18px;
+  color: white;
+  margin: 0px;
+}
+
+.paper-bubbles {
   height: 200px;
   width: 200px;
   border-radius: 80%;
-  background-color: green;
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
-.weather-photo{
-  width: 300px;
-  height: 400px;
+.weather-photo {
+  width: 400px;
+  height: 200px;
 }
 
-.weather-widget{
+.weather-widget {
   height: 500px;
   width: 400px;
   background-color: white;
+  z-index: 2;
 }
