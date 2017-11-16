@@ -22,7 +22,6 @@ class WeatherWidget extends Component {
     let weatherData = "http://api.openweathermap.org/data/2.5/weather?zip=98102,us&appid=052f26926ae9784c2d677ca7bc5dec98&units=imperial"
     axios.get(weatherData)
       .then(response => {
-        console.log(response)
         this.setState({
           city: response.data.name,
           weatherCondition: response.data.weather[0].main,

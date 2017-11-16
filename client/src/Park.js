@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import WeatherWidget from './WeatherWidget';
+import MapOne from './MapOne'
 
 
 
@@ -8,39 +9,54 @@ class Park extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			park: this.props.park,
-      thisPark: []
+			parkPmaid: localStorage.getItem('park'),
+      parkData: []
 		}
 	}
 
   componentDidMount(){
-    //API call to get parks
-    var park = this.state.park;
-
-    let seattleParks = "https://data.seattle.gov/resource/ye65-jqxk.json?pmaid=" + park
+    //API call to get park data
+    var pmaid = this.state.parkPmaid;
+    let seattleParks = "https://data.seattle.gov/resource/ye65-jqxk.json?pmaid=" + pmaid;
     axios.get(seattleParks)
       .then(response => {
         this.setState({
-          thisPark: response.data
+          parkData: response.data
       })
     })
     .catch(error => console.log(error))
   }
 
   render() {
-    let parkData = this.state.thisPark.map((item, index) => {
+    let features = this.state.parkData.map((item, index) => {
       return (
         <div>
           <h3>{item.feature_desc}</h3>
         </div>
       )
     });
+		let name = this.state.parkData.map((item, index) => {
+      return (
+        item.name
+      )
+    });
+		let location = this.state.parkData.map((item, index) => {
+      return (
+        item.location.coordinates
+      )
+    });
 
     return (
       <div>
-      <WeatherWidget />
-      <h3>Features Page!</h3>
-      {parkData}
+        <WeatherWidget />
+        <h3>Hello, {this.props.user.name}!</h3>
+        <a onClick={this.props.logout}>Logout</a>
+
+				<h1>{name[0]}</h1>
+        <h3>Features Page!</h3>
+        {features}
+
+        <MapOne />
       </div>
     )
   }
@@ -50,5 +66,4 @@ class Park extends Component {
 
 export default Park;
 
-// <h1>{this.state.thisPark[0].name}</h1>
-// <h2>{this.state.thisPark[0].hours}</h2>
+// parkData={this.state.parkData}

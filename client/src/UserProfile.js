@@ -17,7 +17,6 @@ class UserProfile extends Component {
   }
 
   handleClickActivity = (e, string) => {
-    console.log("im in user profile button click")
     e.preventDefault();
     this.props.setActivity(string);
     this.setState({

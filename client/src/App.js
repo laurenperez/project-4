@@ -38,12 +38,14 @@ class App extends Component {
   }
 
   setActivity = (activity) => {
+    localStorage.setItem('activity', activity)
     this.setState({
       activity: activity
     })
   }
 
   setPark = (pmaid) => {
+    localStorage.setItem('park', pmaid)
     this.setState({
       park: pmaid
     })
@@ -90,10 +92,9 @@ class App extends Component {
           <Link to="/user-profile">My Dashboard</Link>{' '}
         </nav>
         <Route exact path="/" render={() => <Main user={this.state.user} lift={this.liftTokenToState}/>} />
-        <Route exact path="/user-profile" render={() => <UserProfile user={this.state.user} logout={this.logout} setActivity={this.setActivity}/>} />
-        <Route exact path="/activity" render={() => <Activity user={this.state.user} logout={this.logout} activity={this.state.activity} setPark={this.setPark}/>} />
-        <Route exact path="/map" render={() => <MapAll user={this.state.user} lift={this.liftTokenToState}/>} />
-        <Route exact path="/park" render={() => <Park user={this.state.user} lift={this.liftTokenToState} activity={this.state.activity} park={this.state.park}/>} />
+        <Route path="/user-profile" render={() => <UserProfile user={this.state.user} logout={this.logout} setActivity={this.setActivity}/>} />
+        <Route path="/activity" render={() => <Activity user={this.state.user} logout={this.logout} activity={this.state.activity} setPark={this.setPark}/>} />
+        <Route path="/park" render={() => <Park user={this.state.user} lift={this.liftTokenToState} logout={this.logout} park={this.state.park}/>} />
       </div>
     } else {
       authorizedRoutes =
@@ -102,11 +103,9 @@ class App extends Component {
       </div>
     }
     return (
-      <div>
-        <Router>
-          {authorizedRoutes}
-        </Router>
-      </div>
+      <Router>
+        {authorizedRoutes}
+      </Router>
     );
   }
 }

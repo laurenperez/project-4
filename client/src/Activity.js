@@ -7,14 +7,12 @@ import axios from 'axios';
 import WeatherWidget from './WeatherWidget';
 
 
-
-
 class Activity extends Component {
   constructor(props) {
     super(props)
     this.state = {
       user: {},
-      activity: this.props.activity,
+      activity: localStorage.getItem('activity'),
       parks: [],
       redirect: false
     };
@@ -39,16 +37,11 @@ class Activity extends Component {
   }
 
   handleClickActivity = (e, name) => {
-    console.log("in handle click");
-    console.log(name);
     e.preventDefault();
     this.props.setPark(name);
     this.setState({
       redirect: true
     })
-  }
-  jenna = () =>{
-    console.log("fuck react this works")
   }
 
   render() {
@@ -74,7 +67,6 @@ class Activity extends Component {
           <a onClick={this.props.logout}>Logout</a>
           <WeatherWidget />
           <hr/>
-          <button onClick={this.jenna}> fuck react </button>
           <h1>All of these parks have:  {this.state.activity}</h1>
           {parkList}
           <MapAll user={this.state.user} lift={this.liftTokenToState} parks={this.state.parks}/>
