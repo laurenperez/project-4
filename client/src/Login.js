@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Link, Redirect
+  } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -17,6 +19,7 @@ class Login extends Component {
       password: '',
       open: false,
       loading: false,
+      redirect: false
     }
   }
 
@@ -41,6 +44,9 @@ class Login extends Component {
     }).catch((error) => {
       console.log(error);
     });
+    this.setState({
+      redirect: true
+    })
   }
 
   clearAlert = () => {
@@ -60,12 +66,12 @@ class Login extends Component {
   };
 
   render() {
-    /**
-    * Dialog with action buttons. The actions are passed in as an array of React objects,
-    * in this example [FlatButtons](/#/components/flat-button).
-    *
-    * You can also close this dialog by clicking outside the dialog, or with the 'Esc' key.
-    */
+
+    const{redirect} = this.state;
+      if(redirect){
+        return <Redirect to ='/user-profile'/>
+      }
+
     const actions = [
       <FlatButton
         label="Cancel"
@@ -73,7 +79,7 @@ class Login extends Component {
         style={{margin: '.25em'}}
         onClick={this.handleClose}
       />,
-      <RaisedButton
+      <FlatButton
         label="Login"
         primary={true}
         style={{margin: '.25em'}}

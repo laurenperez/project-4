@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Link, Redirect
+  } from 'react-router-dom';
 import axios from 'axios';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import WeatherWidget from './WeatherWidget';
+import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
 import MapOne from './MapOne'
 
 
@@ -11,7 +15,7 @@ class Park extends Component {
 		super(props);
 		this.state = {
 			parkPmaid: localStorage.getItem('park'),
-      parkData: []
+      parkData: [],
 		}
 	}
 
@@ -29,6 +33,7 @@ class Park extends Component {
   }
 
   render() {
+
     let features = this.state.parkData.map((item, index) => {
       return (
         <div>
@@ -51,10 +56,10 @@ class Park extends Component {
 
 			<Grid fluid>
 
-				<Row className="find">
-					<Col>
-						<h3>Hello, {this.props.user.name}!</h3>
-						<a onClick={this.props.logout}>Logout</a>
+				<Row className="top-nav">
+					<Col xs={12} md={12}>
+						<p>Hello, {this.props.user.name}!</p>
+						<RaisedButton onClick={this.props.logout}>Logout</RaisedButton>
 					</Col>
 				</Row>
 
@@ -64,7 +69,7 @@ class Park extends Component {
 					</Col>
 					<Col>
 						<div className="park-info">
-							<h1>{name[0]}</h1>
+							<span><h1>{name[0]}</h1></span>
 			        <h2>Additional Amenities:</h2>
 			        {features}
 			      </div>

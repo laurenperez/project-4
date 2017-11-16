@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link,
+import { BrowserRouter as Router, Route, Link, Redirect
   } from 'react-router-dom';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import './App.css';
@@ -19,7 +19,7 @@ class App extends Component {
       token: '',
       user: {},
       activity: '',
-      park: ''
+      park: '',
     }
   }
 
@@ -33,8 +33,9 @@ class App extends Component {
     localStorage.removeItem('mernToken')
     this.setState({
       token: '',
-      user: {}
+      user: {},
     })
+    return <Redirect to ='/'/>
   }
 
   setActivity = (activity) => {
@@ -88,8 +89,8 @@ class App extends Component {
       authorizedRoutes =
       <div>
         <nav className="top-nav">
-          <Link to="/">Home</Link>{' '}
-          <Link to="/user-profile">My Dashboard</Link>{' '}
+          <Link to="/">Home</Link>{'  '}
+          <Link to="/user-profile">Activities</Link>{'  '}
         </nav>
         <Route exact path="/" render={() => <Main user={this.state.user} lift={this.liftTokenToState}/>} />
         <Route path="/user-profile" render={() => <UserProfile user={this.state.user} logout={this.logout} setActivity={this.setActivity}/>} />
@@ -99,14 +100,12 @@ class App extends Component {
     } else {
       authorizedRoutes =
       <div>
-        <Route exact path="/" render={() => <Main user={this.state.user} lift={this.liftTokenToState}/>} /> //not logged in
+        <Route exact path="/" render={() => <Main user={this.state.user} lift={this.liftTokenToState}/>} />
       </div>
     }
     return (
       <Router>
-        <div id="page">
-          {authorizedRoutes}
-        </div>
+        {authorizedRoutes}
       </Router>
     );
   }

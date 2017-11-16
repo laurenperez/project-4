@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Link, Redirect
   } from 'react-router-dom';
+  import FlatButton from 'material-ui/FlatButton';
+  import RaisedButton from 'material-ui/RaisedButton';
 import WeatherWidget from './WeatherWidget';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import Paper from 'material-ui/Paper';
@@ -14,7 +16,7 @@ class UserProfile extends Component {
     this.state = {
       user: {},
       activity: '',
-      redirect: false
+      redirect: false,
     };
   }
 
@@ -38,7 +40,7 @@ class UserProfile extends Component {
         <Row className="top-nav">
           <Col xs={12} md={12}>
             <p>Hello, {this.props.user.name}!</p>
-            <a onClick={this.props.logout}>Logout</a>
+            <RaisedButton onClick={this.props.logout}>Logout</RaisedButton>
           </Col>
         </Row>
         <Row>
@@ -46,7 +48,7 @@ class UserProfile extends Component {
             <WeatherWidget />
           </Col>
         </Row>
-        <Row around="xs" center="xs">
+        <Row  center="xs">
           <Col>
             <div className="paper-bubbles" value="Hiking Trails" onClick={(e) => this.handleClickActivity(e, "Hiking Trails")}>Hiking Trails</div>
           </Col>
@@ -60,7 +62,7 @@ class UserProfile extends Component {
             <div className="paper-bubbles" value="Creek" onClick={(e) => this.handleClickActivity(e, "Creek")}>Creeks</div>
           </Col>
         </Row>
-        <Row around="xs" center="xs">
+        <Row  center="xs">
           <Col>
             <div className="paper-bubbles" value="Bike Trail" onClick={(e) => this.handleClickActivity(e, "Bike Trail")}>Bike Trails</div>
           </Col>
@@ -74,7 +76,7 @@ class UserProfile extends Component {
             <div className="paper-bubbles" value="View" onClick={(e) => this.handleClickActivity(e, "View")}>Scenic Views</div>
           </Col>
         </Row>
-        <Row around="xs" center="xs">
+        <Row  center="xs">
           <Col>
             <div className="paper-bubbles" value="Fire Pit" onClick={(e) => this.handleClickActivity(e, "Fire Pit")}>Outdoor Fire Pits</div>
           </Col>

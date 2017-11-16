@@ -1,7 +1,10 @@
 body {
   margin: 0;
   padding: 0;
-
+  background-image: url(./img/homepage.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: black;
   font-family: 'Raleway', sans-serif;
   font-size: 14px;
   color: white;
@@ -16,37 +19,20 @@ span {
   font-family: 'Rock Salt', cursive;
 }
 
-#page {
-  background-image: url(./img/homepage.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-color: black;
-}
-
 .App {
   text-align: center;
-}
-
-.SignupBox {
-  background-color: rgba(0, 0, 0, 0.8);
-  padding: 0.5em;
-}
-
-.LoginBox {
-  background-color: rgba(0, 0, 0, 0.8);
-  padding: 0.5em;
-}
-
-.LogoutBox {
-  background-color: rgba(0, 0, 0, 0.8);
-  padding: 0.5em;
 }
 
 .top-nav {
   background-color: rgba(0, 0, 0, 0.8);
   font-size: 18px;
   color: white;
-  margin: 0px;
+  margin-bottom: 20px;
+}
+
+.nav-buttons {
+  display: inline-block;
+  margin: 20px;
 }
 
 .paper-bubbles {

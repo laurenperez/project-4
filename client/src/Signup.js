@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Link, Redirect
+  } from 'react-router-dom';
 import axios from 'axios';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
@@ -15,6 +17,7 @@ class Signup extends Component {
       email: '',
       password: '',
       open: false,
+      redirect: false
     }
   }
 
@@ -42,6 +45,9 @@ class Signup extends Component {
     }).catch(error => {
       console.log(error)
     })
+    this.setState({
+      redirect: true
+    })
   }
 
   clearAlert = () => {
@@ -62,6 +68,12 @@ class Signup extends Component {
   };
 
   render() {
+
+    const{redirect} = this.state;
+      if(redirect){
+        return <Redirect to ='/user-profile'/>
+      }
+
     const buttonStyle = {
       margin: '.25em',
     }
@@ -73,12 +85,12 @@ class Signup extends Component {
         onClick={this.handleClose}
         style={{margin: '.25em'}}
       />,
-      <RaisedButton
+      <FlatButton
         label="Submit"
         primary={true}
         keyboardFocused={false}
         onClick={this.handleSubmit}
-        style={buttonStyle}
+        style={{margin: '.25em'}}
       />,
     ];
     return (
