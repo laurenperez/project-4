@@ -50,12 +50,13 @@ class Activity extends Component {
     let parkList = this.state.parks.map((item, index) => {
       if (item.hours.indexOf('<') < 0){
         return (
-          <div>
-            <Paper style={style} zDepth={2}>
-              <button onClick={(e) => this.handleClickActivity(e, item.pmaid)}>{item.name}</button>
-              <h3>{item.hours}</h3>
-            </Paper>
-          </div>
+
+            <div className="park-cards">
+              <h3 className="park-name" onClick={(e) => this.handleClickActivity(e, item.pmaid)}>{item.name}</h3>
+              <h3>Open:</h3>
+              <p>{item.hours}</p>
+            </div>
+
         )
       }
     });
@@ -65,25 +66,36 @@ class Activity extends Component {
         return <Redirect to ='/park'/>
       }
 
-      const style = {
-        height: 100,
-        width: 100,
-        margin: 20,
-        textAlign: 'center',
-        display: 'inline-block',
-      };
-
     return (
-      <div>
-          <h1>This is the main Feature/Activity Page</h1>
-          <h3>Hello, {this.props.user.name}!</h3>
-          <a onClick={this.props.logout}>Logout</a>
-          <WeatherWidget />
-          <hr/>
-          <h1>All of these parks have:  {this.state.activity}</h1>
-          {parkList}
-          <MapAll user={this.state.user} lift={this.liftTokenToState} parks={this.state.parks}/>
-      </div>
+      <Grid fluid>
+        <Row>
+          <Col xs={12} md={12}>
+            <h1>This is the main Feature/Activity Page</h1>
+            <h3>Hello, {this.props.user.name}!</h3>
+            <a onClick={this.props.logout}>Logout</a>
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={12} md={6}>
+            <WeatherWidget />
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={12} md={6}>
+            <span><h1>Find {this.state.activity} near you...</h1></span>
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={6} md={6}>
+            <div className="park-cards-container">
+              {parkList}
+            </div>
+          </Col>
+          <Col xs={6} md={6}>
+            <MapAll user={this.state.user} lift={this.liftTokenToState} parks={this.state.parks}/>
+          </Col>
+        </Row>
+      </Grid>
     );
   }
 }

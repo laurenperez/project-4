@@ -1,5 +1,120 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+
+  font-family: 'Raleway', sans-serif;
+  font-size: 14px;
+  color: white;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+span {
+  font-family: 'Rock Salt', cursive;
+}
+
+#page {
+  background-image: url(./img/homepage.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: black;
+}
+
+.App {
+  text-align: center;
+}
+
+.SignupBox {
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 0.5em;
+}
+
+.LoginBox {
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 0.5em;
+}
+
+.LogoutBox {
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 0.5em;
+}
+
+.top-nav {
+  background-color: rgba(0, 0, 0, 0.8);
+  font-size: 18px;
+  color: white;
+  margin: 0px;
+}
+
+.paper-bubbles {
+  height: 150px;
+  width: 150px;
+  margin: 10px;
+  border-radius: 80%;
+  background-color: rgba(0, 0, 0, 0.8);
+  text-align: center;
+  line-height: 150px;
+  display: inline-block;
+}
+
+.paper-bubbles:hover {
+  cursor: pointer;
+}
+
+.weather-photo {
+  width: 300px;
+}
+
+.weather-widget {
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 300px;
+  text-align: center;
+  color: white;
+}
+
+.park-cards-container {
+  height: 500px;
+  overflow: scroll;
+}
+
+.park-cards {
+  height: 175px;
+  width: 125px;
+  margin: 10px;
+  padding: 5px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: inline-block;
+  overflow: hidden;
+}
+
+.park-name {
+  padding: 5px;
+  color: white;
+}
+
+.park-name:hover {
+  background-color: rgba(200, 200, 200, 0.2);
+  cursor: pointer;
+}
+
+.park-info {
+  width: 400px;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.map-frame {
+  border: 10px solid rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 400px;
+  height: 500px;
+}
+
+.find {
+  background-color: red;
 }

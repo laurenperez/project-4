@@ -41,33 +41,18 @@ class WeatherWidget extends Component {
 
   render() {
 
-    const style = {
-      height: 600,
-      width: 400,
-      textAlign: 'center',
-      backgroundColor: 'black',
-      color: 'white'
-    };
-
     return (
 
-      <Grid fluid>
-        <Row>
-          <Col xs={12} md={12}>
-            <div className="weather-widget">
-              <Paper style={style} zDepth={2} rounded={false}>
-                <h1>Current Weather {this.state.city} </h1>
-                <h1>{this.state.temp} F</h1>
-                <img className="weather-photo" src={rain} alt="Weather-Image" />
-                <h3>High of {this.state.high} and a Low of {this.state.low}</h3>
-                <h1>{this.state.weatherCondition}</h1>
-                <h3>Wind speeds {this.state.wind} mph.</h3>
-                <h3>Humidity {this.state.humidity}%</h3>
-              </Paper>
-            </div>
-          </Col>
-        </Row>
-      </Grid>
+      <div className="weather-widget">
+        <h2>Current Weather {this.state.city} </h2>
+        <h1>{this.state.temp} F</h1>
+        <img className="weather-photo" src={rain} alt="Weather-Image" />
+        <p>High of {this.state.high} and a Low of {this.state.low}</p>
+        <h2>Now: {this.state.weatherCondition}</h2>
+        <p>Wind speeds {this.state.wind} mph.</p>
+        <p>Humidity {this.state.humidity}%</p>
+      </div>
+
     );
   }
 }

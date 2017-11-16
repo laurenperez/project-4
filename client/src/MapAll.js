@@ -29,23 +29,25 @@ export class MapContainer extends Component {
 
 
     const style = {
-    width: 600,
-    height: 800,
+    width: 400,
+    height: 500,
     }
     return (
-      <div ref="map" style={{width: 600, height: 800}}>
-        <Map
-          google={this.props.google}
-          style={style}
-          initialCenter={{
-            lat: 47.608013,
-            lng: -122.335167
-          }}
-          zoom={11}
-        >
+      <div className="map-frame">
+        <div ref="map" style={{width: 500, height: 500}}>
+          <Map
+            google={this.props.google}
+            style={style}
+            initialCenter={{
+              lat: 47.608013,
+              lng: -122.335167
+            }}
+            zoom={12}
+          >
 
-        {parkLocations}
-        </Map>
+          {parkLocations}
+          </Map>
+        </div>
       </div>
     );
   }
@@ -55,13 +57,6 @@ export default GoogleApiWrapper({
   apiKey: "AIzaSyDIq_UgKoQ5Du5X_f_S7nCE4mcH2qLqhdw"
 })(MapContainer);
 
-
-
-// google maps API key : AIzaSyDIq_UgKoQ5Du5X_f_S7nCE4mcH2qLqhdw
-//
-// <Marker onClick={this.onMarkerClick}
-//         name={'Current location'} />
-//
 // <InfoWindow
 //   marker={this.state.activeMarker}
 //   visible={this.state.showingInfoWindow}>

@@ -84,7 +84,7 @@ class App extends Component {
   render() {
     let authorizedRoutes = '';
     var theUser = this.state.user
-    if (typeof this.state.user === 'object' && Object.keys(this.state.user).length !== null) {
+    if (typeof this.state.user === 'object' && Object.keys(this.state.user).length !== 0) {
       authorizedRoutes =
       <div>
         <nav className="top-nav">
@@ -104,7 +104,9 @@ class App extends Component {
     }
     return (
       <Router>
-        {authorizedRoutes}
+        <div id="page">
+          {authorizedRoutes}
+        </div>
       </Router>
     );
   }

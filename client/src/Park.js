@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Grid, Row, Col } from 'react-flexbox-grid';
 import WeatherWidget from './WeatherWidget';
 import MapOne from './MapOne'
 
@@ -40,24 +41,41 @@ class Park extends Component {
         item.name
       )
     });
-		let location = this.state.parkData.map((item, index) => {
-      return (
-        item.location.coordinates
-      )
-    });
+		// let location = this.state.parkData.map((item, index) => {
+    //   return (
+    //     item.location.coordinates
+    //   )
+    // });
 
     return (
-      <div>
-        <WeatherWidget />
-        <h3>Hello, {this.props.user.name}!</h3>
-        <a onClick={this.props.logout}>Logout</a>
 
-				<h1>{name[0]}</h1>
-        <h3>Features Page!</h3>
-        {features}
+			<Grid fluid>
 
-        <MapOne />
-      </div>
+				<Row className="find">
+					<Col>
+						<h3>Hello, {this.props.user.name}!</h3>
+						<a onClick={this.props.logout}>Logout</a>
+					</Col>
+				</Row>
+
+				<Row around="xs" center="xs">
+					<Col>
+						<WeatherWidget />
+					</Col>
+					<Col>
+						<div className="park-info">
+							<h1>{name[0]}</h1>
+			        <h2>Additional Amenities:</h2>
+			        {features}
+			      </div>
+					</Col>
+					<Col>
+						<MapOne />
+					</Col>
+				</Row>
+
+			</Grid>
+
     )
   }
 

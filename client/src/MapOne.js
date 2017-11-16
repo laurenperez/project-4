@@ -35,12 +35,12 @@ export class MapContainer extends Component {
     //this is as far in as you can go
 
     const style = {
-    width: 600,
-    height: 800,
+    width: 400,
+    height: 500,
     }
 
     return (
-      <div ref="map" style={{width: 600, height: 800}}>
+      <div className="map-frame" ref="map" style={{width: 400, height: 500}}>
         <Map
           google={this.props.google}
           style={style}
