@@ -10,8 +10,6 @@ import axios from 'axios';
 import Park from './Park';
 
 
-
-
 class App extends Component {
   constructor(props) {
     super(props)

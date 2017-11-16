@@ -1,3 +1,8 @@
+body{
+  margin: 10px;
+  background-color: yellow;
+}
+
 .App {
   text-align: center;
 }
@@ -17,7 +22,20 @@
   padding: 0.5em;
 }
 
+.paper-bubbles{
+  height: 200px;
+  width: 200px;
+  border-radius: 80%;
+  background-color: green;
+}
 
-.weather-widget {
-  background: yellow;
+.weather-photo{
+  width: 300px;
+  height: 400px;
+}
+
+.weather-widget{
+  height: 500px;
+  width: 400px;
+  background-color: white;
 }

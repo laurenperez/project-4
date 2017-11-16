@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
+import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import rain from './img/rain.jpg'
 
 class WeatherWidget extends Component {
   constructor(props){
@@ -11,7 +12,6 @@ class WeatherWidget extends Component {
       temp: '',
       wind: '',
       humidity: '',
-      pressure: '',
       high: '',
       low: ''
     }
@@ -30,7 +30,6 @@ class WeatherWidget extends Component {
           low: response.data.main.temp_min,
           wind: response.data.wind.speed,
           humidity: response.data.main.humidity,
-          pressure: response.data.main.pressure,
       })
     })
     .catch(error => console.log(error))
@@ -38,14 +37,37 @@ class WeatherWidget extends Component {
 
 
   render() {
+    const style = {
+      height: 500,
+      width: 400,
+      textAlign: 'center',
+      backgroundColor:'white'
+    };
+
     return (
       <div className="weather-widget">
-        <h3>Current Weather for {this.state.city} </h3>
-        <h1>{this.state.temp} degrees F</h1>
-        <h5>Expected high of {this.state.high} and a low of {this.state.low}</h5>
-        <h4>Expect {this.state.weatherCondition}</h4>
-        <h4>Wind speed {this.state.wind} mph.</h4>
-        <h4>Humidity {this.state.humidity}% | Pressure {this.state.pressure} hPa</h4>
+        <Card style={style}>
+          <CardHeader>
+            <h3>Current Weather for {this.state.city} </h3>
+          </CardHeader>
+          <CardMedia
+            overlay={
+              <div>
+                <h1>Current Weather for {this.state.city} </h1>
+                <h1>{this.state.temp} F</h1>
+              </div>
+            }
+            >
+            <img className="weather-photo" src={rain} alt="Weather-Image" />
+          </CardMedia>
+          <CardTitle title="Current Conditions" subtitle="Be prapared before you play" />
+          <CardText>
+            <h3>High of {this.state.high} and a Low of {this.state.low}</h3>
+            <h1>{this.state.weatherCondition}</h1>
+            <h3>Wind speeds {this.state.wind} mph.</h3>
+            <h3>Humidity {this.state.humidity}%</h3>
+          </CardText>
+        </Card>
       </div>
     );
   }
