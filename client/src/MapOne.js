@@ -8,31 +8,19 @@ export class MapContainer extends Component {
     this.state = {
       user: {},
       park: this.props.park,
-      parkData: '',
+      name: this.props.name,
       x: this.props.x,
-      y: this.props.y,
-      name: this.props.name
+      y: this.props.y
     };
   }
 
-  componentDidMount(){
-    //API call to get park data
-    var pmaid = this.state.park;
-    let seattleParks = "https://data.seattle.gov/resource/ye65-jqxk.json?pmaid=" + pmaid
-    axios.get(seattleParks)
-      .then(response => {
-        this.setState({
-          parkData: response.data
-      })
-    })
-    .catch(error => console.log(error))
-  }
-
-
   render() {
 
-    console.log(this.state.parkData[0]);
-    //this is as far in as you can go
+    console.log("****THE RESPONSE*****  " + this.props.park)
+    console.log("****THE RESPONSE*****  " + this.props.name)
+    console.log("****THE RESPONSE*****  " + this.props.x)
+    console.log("****THE RESPONSE*****  " + this.props.y)
+
 
     const style = {
     width: 400,
@@ -40,7 +28,7 @@ export class MapContainer extends Component {
     }
 
     return (
-      <div className="map-frame" ref="map" style={{width: 400, height: 500}}>
+      <div className="map-frame2" ref="map" style={{width: 400, height: 500}}>
         <Map
           google={this.props.google}
           style={style}
@@ -48,11 +36,15 @@ export class MapContainer extends Component {
             lat: 47.608013,
             lng: -122.335167
           }}
-          zoom={12}
-        >
+          zoom={10}
+          >
+          <Marker
+            title={this.props.name}
+            name={this.props.name}
+            position={{lat: this.props.y, lng: this.props.x}}
+          />
 
-
-        </Map>
+          </Map>
       </div>
     );
   }
@@ -63,8 +55,5 @@ export default GoogleApiWrapper({
 })(MapContainer);
 
 
-// <Marker
-//   title={this.state.name}
-//   name={this.state.name}
-//   position={{lat: this.state.y, lng: this.state.x}}
-// />
+//// {parkLocation}
+//

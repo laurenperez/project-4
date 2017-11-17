@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import rain from './img/rain.jpg'
+import sunny from './img/sunny.jpg'
+import cloudy from './img/cloudy.jpg'
 import Paper from 'material-ui/Paper';
 import './App.css';
 
@@ -40,13 +42,27 @@ class WeatherWidget extends Component {
 
 
   render() {
+    var pic = ''
+    if(this.state.weatherCondition === "Rain"){
+      pic = <img className="weather-photo" src={rain} alt="Weather-Image" />
+    } else if (this.state.weatherCondition === "Clear"){
+      pic = <img className="weather-photo" src={sunny} alt="Weather-Image" />
+    } else if (this.state.weatherCondition === "Sunny"){
+      pic = <img className="weather-photo" src={sunny} alt="Weather-Image" />
+    }  else if (this.state.weatherCondition === "Cloudy"){
+      pic = <img className="weather-photo" src={cloudy} alt="Weather-Image" />
+    } else if (this.state.weatherCondition === "Mist"){
+      pic = <img className="weather-photo" src={rain} alt="Weather-Image" />
+    } else {
+      pic = <img className="weather-photo" src={rain} alt="Weather-Image" />
+    }
 
     return (
 
       <div className="weather-widget">
         <h2>Current Weather {this.state.city} </h2>
         <h1>{this.state.temp} F</h1>
-        <img className="weather-photo" src={rain} alt="Weather-Image" />
+        {pic}
         <p>High of {this.state.high} and a Low of {this.state.low}</p>
         <h2>Now: {this.state.weatherCondition}</h2>
         <p>Wind speeds {this.state.wind} mph.</p>
@@ -59,3 +75,7 @@ class WeatherWidget extends Component {
 
 
 export default WeatherWidget;
+
+
+
+//response.data.weather[0].main,

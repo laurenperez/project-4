@@ -20,6 +20,7 @@ class App extends Component {
       user: {},
       activity: '',
       park: '',
+      favoritesArray: []
     }
   }
 
@@ -49,6 +50,20 @@ class App extends Component {
     localStorage.setItem('park', pmaid)
     this.setState({
       park: pmaid
+    })
+  }
+
+  //for later database calls
+  // liftFavorites = (favorites) =>
+  // this.setState({
+  //   favoritesArray: favorites
+  // })
+
+  addToFavs = (fav) => {
+    var tempArr = this.state.favoritesArray
+    tempArr.push(fav)
+    this.setState({
+      favoritesArray: tempArr
     })
   }
 
@@ -88,19 +103,18 @@ class App extends Component {
     if (typeof this.state.user === 'object' && Object.keys(this.state.user).length !== 0) {
       authorizedRoutes =
       <div>
-        <nav className="top-nav">
-          <Link to="/">Home</Link>{'  '}
-          <Link to="/user-profile">Activities</Link>{'  '}
-        </nav>
         <Route exact path="/" render={() => <Main user={this.state.user} lift={this.liftTokenToState}/>} />
-        <Route path="/user-profile" render={() => <UserProfile user={this.state.user} logout={this.logout} setActivity={this.setActivity}/>} />
+        <Route path="/user-profile" render={() => <UserProfile user={this.state.user} logout={this.logout} setActivity={this.setActivity} favoritesArray={this.state.favoritesArray}/>} />
         <Route path="/activity" render={() => <Activity user={this.state.user} logout={this.logout} activity={this.state.activity} setPark={this.setPark}/>} />
-        <Route path="/park" render={() => <Park user={this.state.user} lift={this.liftTokenToState} logout={this.logout} park={this.state.park}/>} />
+        <Route path="/park" render={() => <Park user={this.state.user} lift={this.liftTokenToState} logout={this.logout} park={this.state.park} addToFavs={this.addToFavs}/>} />
       </div>
     } else {
       authorizedRoutes =
       <div>
         <Route exact path="/" render={() => <Main user={this.state.user} lift={this.liftTokenToState}/>} />
+        <Route path="/user-profile" render={() => <UserProfile setActivity={this.setActivity} setPark={this.setPark}/>} />
+        <Route path="/activity" render={() => <Activity activity={this.state.activity} setPark={this.setPark}/>} />
+        <Route path="/park" render={() => <Park  park={this.state.park} addToFavs={this.addToFavs}/>} />
       </div>
     }
     return (
@@ -112,3 +126,9 @@ class App extends Component {
 }
 
 export default App;
+
+
+// <nav className="top-nav">
+//   <Link to="/">Home</Link>{'  '}
+//   <Link to="/user-profile">Activities</Link>{'  '}
+// </nav>

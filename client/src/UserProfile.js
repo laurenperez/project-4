@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Link, Redirect
   } from 'react-router-dom';
-  import FlatButton from 'material-ui/FlatButton';
-  import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
 import WeatherWidget from './WeatherWidget';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import Paper from 'material-ui/Paper';
@@ -17,6 +17,7 @@ class UserProfile extends Component {
       user: {},
       activity: '',
       redirect: false,
+      favoritesArray: this.props.favoritesArray
     };
   }
 
@@ -28,61 +29,123 @@ class UserProfile extends Component {
     })
   }
 
-  render() {
+  //for later when database works
+  // handleChange = (value) => {
+  //   axios.post('/image/grid', {
+  //     user: this.props.user
+  //   }).then(result =>{
+  //     this.setState({
+  //       favoritesArray:result.data.favorites.name,
+  //     })
+  //   })
 
+
+  render() {
+    var favorites;
     const{redirect} = this.state;
       if(redirect){
         return <Redirect to ='/activity'/>
       }
 
+      var favorites;
+      if (this.state.favoritesArray !== undefined){
+        favorites = this.state.favoritesArray.map((item, index) => {
+          return (
+            <h3>{item}</h3>
+          )
+        });
+      } else {
+        favorites = <h3>Your favorites here...</h3>
+      }
+
+      var name;
+      if (this.props.user !== undefined){
+        name = this.props.user.name
+      } else {
+        name = "Guest"
+      }
+
+      var logged;
+      if (this.props.user !== undefined){
+        logged = <RaisedButton onClick={this.props.logout}><span>Logout</span></RaisedButton>
+      } else {
+        logged = " "
+      }
+
     return (
       <Grid fluid>
-        <Row className="top-nav">
-          <Col xs={12} md={12}>
-            <p>Hello, {this.props.user.name}!</p>
-            <RaisedButton onClick={this.props.logout}>Logout</RaisedButton>
+
+        <Row middle="xs" between="xs" className="top-nav">
+          <Col>
+            <h2 className="margin">Hello, <span>{name}</span></h2>
+          </Col>
+          <Col>
+            <h1><span>Unplug Seattle</span></h1>
+          </Col>
+          <Col>
+            {logged}
           </Col>
         </Row>
-        <Row>
-          <Col xs={12} md={12}>
+
+        <Row middle="xs" between="xs">
+
+          <Col>
             <WeatherWidget />
           </Col>
-        </Row>
-        <Row  center="xs">
+
           <Col>
-            <div className="paper-bubbles" value="Hiking Trails" onClick={(e) => this.handleClickActivity(e, "Hiking Trails")}>Hiking Trails</div>
+          <h2 className="black"><span>Choose your next adventure...</span></h2>
+            <Row>
+              <Col>
+                <div className="paper-bubbles" value="Hiking Trails" onClick={(e) => this.handleClickActivity(e, "Hiking Trails")}>Hiking Trails</div>
+              </Col>
+              <Col>
+                <div className="paper-bubbles" value="Paths" onClick={(e) => this.handleClickActivity(e, "Paths")}>Walking Paths</div>
+              </Col>
+              <Col>
+                <div className="paper-bubbles" value="Woods" onClick={(e) => this.handleClickActivity(e, "Woods")}>Woods</div>
+              </Col>
+              <Col>
+                <div className="paper-bubbles" value="Creek" onClick={(e) => this.handleClickActivity(e, "Creek")}>Creeks</div>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <div className="paper-bubbles" value="Bike Trail" onClick={(e) => this.handleClickActivity(e, "Bike Trail")}>Bike Trails</div>
+              </Col>
+              <Col>
+                <div className="paper-bubbles" value="Dog Off Leash Area" onClick={(e) => this.handleClickActivity(e, "Dog Off Leash Area")}>Dog Off Leash Area</div>
+              </Col>
+              <Col>
+                <div className="paper-bubbles" value="Guarded Beach" onClick={(e) => this.handleClickActivity(e, "Guarded Beach")}>Swimming Beaches</div>
+              </Col>
+              <Col>
+                <div className="paper-bubbles" value="View" onClick={(e) => this.handleClickActivity(e, "View")}>Scenic Views</div>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <div className="paper-bubbles" value="Fire Pit" onClick={(e) => this.handleClickActivity(e, "Fire Pit")}>Outdoor Fire Pits</div>
+              </Col>
+              <Col>
+                <div className="paper-bubbles" value="Disc Golf" onClick={(e) => this.handleClickActivity(e, "Disc Golf")}>Disc Golf</div>
+              </Col>
+              <Col>
+                <div className="paper-bubbles" value="Picnic Sites" onClick={(e) => this.handleClickActivity(e, "Picnic Sites")}>Picnic Sites</div>
+              </Col>
+              <Col>
+                <div className="paper-bubbles" value="Play Area" onClick={(e) => this.handleClickActivity(e, "Play Area")}>Childrens Play Areas</div>
+              </Col>
+            </Row>
           </Col>
+
           <Col>
-            <div className="paper-bubbles" value="Paths" onClick={(e) => this.handleClickActivity(e, "Paths")}>Walking Paths</div>
+            <div className="favs-container">
+              <h2><span>My Favorite Parks</span></h2>
+              {favorites}
+            </div>
           </Col>
-          <Col>
-            <div className="paper-bubbles" value="Woods" onClick={(e) => this.handleClickActivity(e, "Woods")}>Woods</div>
-          </Col>
-          <Col>
-            <div className="paper-bubbles" value="Creek" onClick={(e) => this.handleClickActivity(e, "Creek")}>Creeks</div>
-          </Col>
-        </Row>
-        <Row  center="xs">
-          <Col>
-            <div className="paper-bubbles" value="Bike Trail" onClick={(e) => this.handleClickActivity(e, "Bike Trail")}>Bike Trails</div>
-          </Col>
-          <Col>
-            <div className="paper-bubbles" value="Dog Off Leash Area" onClick={(e) => this.handleClickActivity(e, "Dog Off Leash Area")}>Dogs: Off Leash Area</div>
-          </Col>
-          <Col>
-            <div className="paper-bubbles" value="Guarded Beach" onClick={(e) => this.handleClickActivity(e, "Guarded Beach")}>Swimming Beaches</div>
-          </Col>
-          <Col>
-            <div className="paper-bubbles" value="View" onClick={(e) => this.handleClickActivity(e, "View")}>Scenic Views</div>
-          </Col>
-        </Row>
-        <Row  center="xs">
-          <Col>
-            <div className="paper-bubbles" value="Fire Pit" onClick={(e) => this.handleClickActivity(e, "Fire Pit")}>Outdoor Fire Pits</div>
-          </Col>
-          <Col>
-            <div className="paper-bubbles" value="Disc Golf" onClick={(e) => this.handleClickActivity(e, "Disc Golf")}>Disc Golf</div>
-          </Col>
+
         </Row>
       </Grid>
     );
@@ -90,17 +153,3 @@ class UserProfile extends Component {
 }
 
 export default UserProfile;
-
-
-
-
-
-
-
-
-
-
-
-
-
-// end

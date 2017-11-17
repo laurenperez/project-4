@@ -48,6 +48,7 @@ class Activity extends Component {
     })
   }
 
+
   render() {
 
     let parkList = this.state.parks.map((item, index) => {
@@ -55,7 +56,7 @@ class Activity extends Component {
         return (
           <div className="park-cards">
             <h3 className="park-name" onClick={(e) => this.handleClickActivity(e, item.pmaid)}>{item.name}</h3>
-            <h3>Open:</h3>
+            <p>Open:</p>
             <p>{item.hours}</p>
           </div>
         )
@@ -67,42 +68,55 @@ class Activity extends Component {
         return <Redirect to ='/park'/>
       }
 
+      var name;
+      if (this.props.user !== undefined){
+        name = this.props.user.name
+      } else {
+        name = "Guest"
+      }
+
+      var logged;
+      if (this.props.user !== undefined){
+        logged = <RaisedButton className="margin" onClick={this.props.logout}><span>Logout</span></RaisedButton>
+      } else {
+        logged = " "
+      }
+
     return (
       <Grid fluid>
-        <Row className="top-nav">
-          <Col xs={12} md={12}>
-            <p>Hello, {this.props.user.name}!</p>
-            <RaisedButton onClick={this.props.logout}>Logout</RaisedButton>
+
+        <Row middle="xs" between="xs" className="top-nav">
+          <Col>
+            <h2 className="margin">Hello, {name}</h2>
+          </Col>
+          <Col>
+            <h2><span>{this.state.activity}</span></h2>
+          </Col>
+          <Col>
+            {logged}
           </Col>
         </Row>
-        <Row center="xs">
-          <Col xs={12} md={12}>
-            <span><h1>{this.state.activity}</h1></span>
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={12} md={6}>
+
+        <Row middle="xs">
+
+          <Col xs={12} md={3}>
             <WeatherWidget />
           </Col>
-        </Row>
-        <Row>
-          <Col xs={12} md={6}>
-            <span><h1>Select a park for more info...</h1></span>
-          </Col>
-          <Col xs={12} md={6}>
-            <span><h1>Hover over a marker for park name</h1></span>
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={12} md={6}>
+
+          <Col xs={12} md={5}>
+            <span><h2 className="black">Select a park for more info...</h2></span>
             <div className="park-cards-container">
               {parkList}
             </div>
           </Col>
-          <Col xs={12} md={6}>
+
+          <Col xs={12} md={4}>
+            <span><h2 className="black">Hover for park name</h2></span>
             <MapAll user={this.state.user} lift={this.liftTokenToState} parks={this.state.parks}/>
           </Col>
+
         </Row>
+
       </Grid>
     );
   }

@@ -34,7 +34,7 @@ export class MapContainer extends Component {
     }
     return (
       <div className="map-frame">
-        <div ref="map" style={{width: 500, height: 500}}>
+        <div ref="map" style={{width: 400, height: 500}}>
           <Map
             google={this.props.google}
             style={style}
@@ -42,7 +42,7 @@ export class MapContainer extends Component {
               lat: 47.608013,
               lng: -122.335167
             }}
-            zoom={12}
+            zoom={11}
           >
 
           {parkLocations}

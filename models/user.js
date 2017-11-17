@@ -1,6 +1,16 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 
+
+//For Later
+// var visitSchema = new mongoose.Schema({
+//   date: String,
+//   count: {
+//     type: Number,
+//     default: 0
+//   },
+// })
+
 var userSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -20,7 +30,9 @@ var userSchema = new mongoose.Schema({
     required: true,
     minlength: 8,
     maxlength: 99
-  }
+  },
+  favorites: [String],
+  visits: [visitSchema]
 });
 
 // Override 'toJSON' to prevent the password from being returned with the user
