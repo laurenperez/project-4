@@ -78,13 +78,6 @@ class Park extends Component {
         logged = " "
       }
 
-      var add;
-      if (this.props.user !== undefined){
-        add = <RaisedButton onClick={this.add}><span>Add to Favorites</span></RaisedButton>
-      } else {
-        add = " "
-      }
-
     return (
 			<Grid fluid>
 
@@ -109,7 +102,7 @@ class Park extends Component {
 							<span><h1>{this.state.name}</h1></span>
 			        <h2>Additional Amenities:</h2>
 			        {features}
-              {add}
+              <AddFavorite name={this.state.name} user={this.props.user}/>
 			      </div>
 					</Col>
 					<Col>
@@ -126,5 +119,5 @@ class Park extends Component {
 export default Park;
 
 
-//<AddFavorite name={this.props.name} user={this.state.user}/>
+
 // parkData={this.state.parkData}

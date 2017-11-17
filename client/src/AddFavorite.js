@@ -18,11 +18,11 @@ class AddFavorite extends Component {
 	}
 
 
-
   addItem = (e) => {
     console.log("This is working")
+    console.log(this.props.name)
     e.preventDefault();
-    axios.post('/users/favorites', {
+    axios.post('/users/favorite', {
       user: this.props.user,
       name: this.props.name,
     }).then(result => {
@@ -58,7 +58,7 @@ class AddFavorite extends Component {
 
     return (
       <FlatButton
-        label="Add to Favorites"
+        label="favorite"
         primary={true}
         keyboardFocused={true}
         onClick={(e) => this.addItem(e)}

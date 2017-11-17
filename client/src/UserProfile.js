@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Link, Redirect
   } from 'react-router-dom';
+import axios from 'axios';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import WeatherWidget from './WeatherWidget';
@@ -29,15 +30,15 @@ class UserProfile extends Component {
     })
   }
 
-  //for later when database works
-  // handleChange = (value) => {
-  //   axios.post('/image/grid', {
-  //     user: this.props.user
-  //   }).then(result =>{
-  //     this.setState({
-  //       favoritesArray:result.data.favorites.name,
-  //     })
-  //   })
+  componentDidMount = () => {
+    axios.post('/users/favoriteList', {
+      user: this.props.user
+    }).then(result =>{
+      this.setState({
+        favoritesArray:result.data.favorites,
+      })
+    })
+  }
 
 
   render() {
