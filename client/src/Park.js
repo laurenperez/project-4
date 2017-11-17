@@ -20,7 +20,8 @@ class Park extends Component {
       parkData: [],
 			name: '',
 			x: '',
-			y: ''
+			y: '',
+      redirect: false
 		}
 	}
 
@@ -43,6 +44,12 @@ class Park extends Component {
 
   add = () => {
     this.props.addToFavs(this.state.name)
+    this.setState({
+      redirect: true
+    })
+  }
+
+  toDash = () => {
     this.setState({
       redirect: true
     })
@@ -87,6 +94,9 @@ class Park extends Component {
           </Col>
           <Col>
             <h2><span>Park Info</span></h2>
+          </Col>
+          <Col>
+            <RaisedButton onClick={this.toDash}><span>Dashboard</span></RaisedButton>
           </Col>
           <Col>
             {logged}

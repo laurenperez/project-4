@@ -19,6 +19,7 @@ class Activity extends Component {
       activity: localStorage.getItem('activity'),
       parks: [],
       redirect: false,
+      redirect: false
     };
   }
 
@@ -48,6 +49,12 @@ class Activity extends Component {
     })
   }
 
+  toDash = () => {
+    this.setState({
+      redirect2: true
+    })
+  }
+
 
   render() {
 
@@ -67,6 +74,11 @@ class Activity extends Component {
       if(redirect){
         return <Redirect to ='/park'/>
       }
+
+      const{redirect2} = this.state;
+        if(redirect2){
+          return <Redirect to ='/user-profile'/>
+        }
 
       var name;
       if (this.props.user !== undefined){
@@ -91,6 +103,9 @@ class Activity extends Component {
           </Col>
           <Col>
             <h2><span>{this.state.activity}</span></h2>
+          </Col>
+          <Col>
+            <RaisedButton onClick={this.toDash}><span>Dashboard</span></RaisedButton>
           </Col>
           <Col>
             {logged}
