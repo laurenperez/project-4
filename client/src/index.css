@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-image: url(./img/homepage3.jpg);
+  background-image: url(./img/homepage1.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-color: black;
@@ -10,15 +10,13 @@ body {
   color: white;
 }
 
-
-
 a {
   color: white;
   text-decoration: none;
 }
 
 span {
-  font-family: 'Rock Salt', cursive;
+  font-family: 'Open Sans Condensed', sans-serif;
   padding: 5px;
 }
 
@@ -26,6 +24,9 @@ button {
   color: black !important;
 }
 
+.logo {
+  font-family: 'Rock Salt', cursive;
+}
 
 .top-nav {
   background-color: rgba(0, 0, 0, 0.8);
@@ -161,3 +162,9 @@ button {
 /*.find {
   background: red;
 }*/
+
+
+font-family: 'Rock Salt', cursive;
+font-family: 'Open Sans Condensed', sans-serif;
+font-family: 'Amatic SC', cursive;
+font-family: 'Raleway', sans-serif;

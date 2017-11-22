@@ -60,13 +60,13 @@ class WeatherWidget extends Component {
     return (
 
       <div className="weather-widget">
-        <h2>Current Weather {this.state.city} </h2>
+        <h2><span>Current Weather {this.state.city} </span></h2>
         <h1>{this.state.temp} F</h1>
         {pic}
-        <p>High of {this.state.high} and a Low of {this.state.low}</p>
-        <h2>Now: {this.state.weatherCondition}</h2>
-        <p>Wind speeds {this.state.wind} mph.</p>
-        <p>Humidity {this.state.humidity}%</p>
+        <p><span>High of {this.state.high} and a Low of {this.state.low}</span></p>
+        <h2><span>Now: {this.state.weatherCondition}</span></h2>
+        <p><span>Wind speeds {this.state.wind} mph.</span></p>
+        <p><span>Humidity {this.state.humidity}%</span></p>
       </div>
 
     );

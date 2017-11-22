@@ -78,10 +78,10 @@ class UserProfile extends Component {
 
         <Row middle="xs" between="xs" className="top-nav">
           <Col>
-            <h2 className="margin">Hello, <span>{name}</span></h2>
+            <h2 className="margin">Hello, {name}</h2>
           </Col>
           <Col>
-            <h1><span>Unplug Seattle</span></h1>
+            <h1><span className="logo">Unplug Seattle</span></h1>
           </Col>
           <Col>
             {logged}
