@@ -86,11 +86,11 @@ class UserProfile extends Component {
       logged = " "
     }
 
-    var home;
+    var goToHome;
     if (this.props.user === undefined){
-      home = <a onClick={this.gohome}><span>Back to Landing Page...</span></a>
+      goToHome= <a onClick={this.gohome}><span>Back to Landing Page...</span></a>
     } else {
-      home = " "
+      goToHome = " "
     }
 
 
@@ -105,7 +105,7 @@ class UserProfile extends Component {
             <h1><span className="logo">Unplug Seattle</span></h1>
           </Col>
           <Col>
-            {home}
+            {goToHome}
           </Col>
           <Col>
             {logged}
