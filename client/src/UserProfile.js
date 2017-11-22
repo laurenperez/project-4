@@ -73,6 +73,14 @@ class UserProfile extends Component {
         logged = " "
       }
 
+      var home;
+      if (this.props.user !== undefined){
+        home = <RaisedButton onClick={this.gohome}><span>Back to Landing Page...</span></RaisedButton>
+      } else {
+        home = " "
+      }
+
+
     return (
       <Grid fluid>
 
@@ -82,6 +90,9 @@ class UserProfile extends Component {
           </Col>
           <Col>
             <h1><span className="logo">Unplug Seattle</span></h1>
+          </Col>
+          <Col>
+            {home}
           </Col>
           <Col>
             {logged}

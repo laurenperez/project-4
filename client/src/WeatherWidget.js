@@ -54,7 +54,7 @@ class WeatherWidget extends Component {
     } else if (this.state.weatherCondition === "Mist"){
       pic = <img className="weather-photo" src={rain} alt="Weather-Image" />
     } else {
-      pic = <img className="weather-photo" src={rain} alt="Weather-Image" />
+      pic = <img className="weather-photo" src={cloudy} alt="Weather-Image" />
     }
 
     return (
