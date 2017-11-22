@@ -18,7 +18,8 @@ class UserProfile extends Component {
       user: {},
       activity: '',
       redirect: false,
-      favoritesArray: this.props.favoritesArray
+      favoritesArray: this.props.favoritesArray,
+      home: false
     };
   }
 
@@ -40,45 +41,55 @@ class UserProfile extends Component {
     })
   }
 
+  gohome = () => {
+
+  }
+
 
   render() {
-    var favorites;
+
+
     const{redirect} = this.state;
       if(redirect){
         return <Redirect to ='/activity'/>
       }
 
-      var favorites;
-      if (this.state.favoritesArray !== undefined){
-        favorites = this.state.favoritesArray.map((item, index) => {
-          return (
-            <h3>{item}</h3>
-          )
-        });
-      } else {
-        favorites = <h3>Your favorites here...</h3>
+    const{home} = this.state;
+      if(home){
+        return <Redirect to ='/'/>
       }
 
-      var name;
-      if (this.props.user !== undefined){
-        name = this.props.user.name
-      } else {
-        name = "Guest"
-      }
+    var favorites;
+    if (this.state.favoritesArray !== undefined){
+      favorites = this.state.favoritesArray.map((item, index) => {
+        return (
+          <h3>{item}</h3>
+        )
+      });
+    } else {
+      favorites = <h3>Your favorites here...</h3>
+    }
 
-      var logged;
-      if (this.props.user !== undefined){
-        logged = <RaisedButton onClick={this.props.logout}><span>Logout</span></RaisedButton>
-      } else {
-        logged = " "
-      }
+    var name;
+    if (this.props.user !== undefined){
+      name = this.props.user.name
+    } else {
+      name = "Guest"
+    }
 
-      var home;
-      if (this.props.user !== undefined){
-        home = <RaisedButton onClick={this.gohome}><span>Back to Landing Page...</span></RaisedButton>
-      } else {
-        home = " "
-      }
+    var logged;
+    if (this.props.user !== undefined){
+      logged = <RaisedButton onClick={this.props.logout}><span>Logout</span></RaisedButton>
+    } else {
+      logged = " "
+    }
+
+    var home;
+    if (this.props.user !== undefined){
+      home = <a onClick={this.gohome}><span>Back to Landing Page...</span></a>
+    } else {
+      home = " "
+    }
 
 
     return (
