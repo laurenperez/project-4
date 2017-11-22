@@ -42,7 +42,9 @@ class UserProfile extends Component {
   }
 
   gohome = () => {
-
+    this.setState({
+      home: true
+    })
   }
 
 
@@ -74,7 +76,7 @@ class UserProfile extends Component {
     if (this.props.user !== undefined){
       name = this.props.user.name
     } else {
-      name = "Guest"
+      name = "Guest. Enjoy the test drive!"
     }
 
     var logged;
@@ -85,7 +87,7 @@ class UserProfile extends Component {
     }
 
     var home;
-    if (this.props.user !== undefined){
+    if (this.props.user === undefined){
       home = <a onClick={this.gohome}><span>Back to Landing Page...</span></a>
     } else {
       home = " "
