@@ -3,7 +3,7 @@
 
 ##### Unplug Seattle
 
-View the live site at:
+View the live site at: https://whispering-caverns-45642.herokuapp.com
 
 ## About the App
 
