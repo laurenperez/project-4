@@ -110,7 +110,7 @@ class Park extends Component {
 					<Col>
 						<div className="park-info">
 							<span><h1>{this.state.name}</h1></span>
-			        <h2>Additional Amenities:</h2>
+			        <h2>Park Amenities:</h2>
 			        {features}
               <AddFavorite name={this.state.name} user={this.props.user}/>
 			      </div>
