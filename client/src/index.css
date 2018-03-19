@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-image: url(./img/homepage1.jpg);
+  background-image: url(./img/needle.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-color: black;
@@ -29,7 +29,7 @@ button {
 }
 
 .top-nav {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.9);
   font-size: 16px;
   color: white;
   margin-bottom: 20px;
@@ -40,12 +40,17 @@ button {
   margin: 10px;
 }
 
+.home-page {
+  height: 100vh;
+}
+
+
 .welcome {
   height: 300px;
   width: 500px;
   padding: 20px;
   text-align: center;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.9);
   border-radius: 4px;
 }
 
@@ -54,7 +59,7 @@ button {
   width: 150px;
   margin: 10px;
   border-radius: 80%;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.9);
   text-align: center;
   line-height: 150px;
   display: inline-block;
@@ -70,7 +75,7 @@ button {
 
 .weather-widget {
   padding: 20px;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.9);
   width: 250px;
   height: 450px;
   text-align: center;
@@ -90,7 +95,7 @@ button {
   margin: 10px;
   padding: 5px;
   text-align: center;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.9);
   display: inline-block;
   overflow: hidden;
   border-radius: 4px;
@@ -109,13 +114,13 @@ button {
 .park-info {
   width: 400px;
   padding: 20px;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.9);
   border-radius: 4px;
 }
 
 .map-frame {
-  border: 10px solid rgba(0, 0, 0, 0.8);
-  background-color: rgba(0, 0, 0, 0.8);
+  border: 10px solid rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.9);
   width: 400px;
   height: 500px;
   border-radius: 4px;
@@ -127,8 +132,8 @@ button {
 }
 
 .map-frame2 {
-  border: 10px solid rgba(0, 0, 0, 0.8);
-  background-color: rgba(0, 0, 0, 0.8);
+  border: 10px solid rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.9);
   width: 400px;
   height: 500px;
   border-radius: 4px;
@@ -143,7 +148,7 @@ button {
   height: 450px;
   width: 300px;
   padding: 20px;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.9);
   text-align: center;
   border-radius: 4px;
 }
@@ -153,7 +158,7 @@ button {
 }
 
 .black {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.9);
   padding: 5px;
   text-align: center;
   width: 80%;

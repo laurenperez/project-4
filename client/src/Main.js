@@ -30,25 +30,22 @@ class Main extends Component {
 
     return (
       <Grid fluid>
-				<Row around="xs" end="xs">
-					<Col>
+        <Row className="home-page" around="xs" middle="xs">
+          <Col>
             <div className="welcome">
-
               <div className='nav-buttons'>
-    	          <Signup lift={this.props.lift} />
-    	        </div>
-
-    	        <div className='nav-buttons'>
-    	          <Login lift={this.props.lift} />
-    	        </div>
-
+                <Signup lift={this.props.lift} />
+              </div>
+              <div className='nav-buttons'>
+                <Login lift={this.props.lift} />
+              </div>
               <h2> Welcome to <span className="logo">Unplug Seattle</span></h2>
               <h4>You can explore the site without creating an account.</h4>
               <h4>If you want to save your favorites, sign up!</h4>
               <RaisedButton onClick={this.exploreSite}><span>TEST DRIVE</span></RaisedButton>
             </div>
-					</Col>
-				</Row>
+          </Col>
+        </Row>
       </Grid>
     )
   }

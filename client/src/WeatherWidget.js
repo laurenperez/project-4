@@ -30,9 +30,9 @@ class WeatherWidget extends Component {
         this.setState({
           city: response.data.name,
           weatherCondition: response.data.weather[0].main,
-          temp: response.data.main.temp,
-          high: response.data.main.temp_max,
-          low: response.data.main.temp_min,
+          temp: Math.floor(response.data.main.temp),
+          high: Math.floor(response.data.main.temp_max),
+          low: Math.floor(response.data.main.temp_min),
           wind: response.data.wind.speed,
           humidity: response.data.main.humidity,
       })
@@ -61,9 +61,9 @@ class WeatherWidget extends Component {
 
       <div className="weather-widget">
         <h2><span>Current Weather {this.state.city} </span></h2>
-        <h1>{this.state.temp} F</h1>
+        <h1>{this.state.temp}&#186; F</h1>
         {pic}
-        <p><span>High of {this.state.high} and a Low of {this.state.low}</span></p>
+        <p><span>High of {this.state.high}&#186; and a Low of {this.state.low}&#186;</span></p>
         <h2><span>Now: {this.state.weatherCondition}</span></h2>
         <p><span>Wind speeds {this.state.wind} mph.</span></p>
         <p><span>Humidity {this.state.humidity}%</span></p>
